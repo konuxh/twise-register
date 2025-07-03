@@ -14,7 +14,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f4f4;
-            padding-bottom: 80px; /* pastki navigatsiya uchun joy */
+            padding-bottom: 80px;
         }
 
         .header {
@@ -38,6 +38,7 @@
         }
 
         .product-item {
+            position: relative;
             background: #333;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -79,6 +80,30 @@
 
         .buy-btn:hover {
             background: #0056b3;
+        }
+
+        .vip-badge {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            background: #ffc107;
+            color: #000;
+            padding: 4px 10px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .duration-badge {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            background: #28a745;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50px;
         }
 
         .bottom-nav {
@@ -125,145 +150,165 @@
 </head>
 <body>
 
-    <div class="header">
-        Maxsulotlar
+<div class="header">
+    Maxsulotlar
+</div>
+
+<div class="product-list">
+
+    <!-- Mahsulotlar 1 - 10 -->
+    <!-- Har birida VIP va 60 kun belgisi qo‘shilgan -->
+
+    <!-- 1 -->
+    <div class="product-item">
+        <img src="plane1.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 50.000 uzs<br>
+            Kunlik daromad: 8.000 uzs<br>
+            Soatlik daromad: 333.33 uzs<br>
+            jami daromad: 480.000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 1</div>
+        <div class="duration-badge">60 kun</div>
     </div>
 
-    <div class="product-list">
-        <!-- 10 ta mahsulotlar to‘liq holatda joylashtirilgan -->
-        <!-- Har biri .product-item blokida saqlangan -->
-
-        <!-- Mahsulotlar: plane1.jpg dan plane10.jpg gacha to‘liq saqlangan -->
-        <!-- Quyida siz yuborgan kontentga tegmaganman, faqat dizayn va responsiveness qo‘shilgan -->
-
-        <!-- 1-Mahsulot -->
-        <div class="product-item">
-            <img src="plane1.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 50.000 uzs<br>
-                Kunlik daromad: 8.000 uzs<br>
-                Soatlik daromad: 333.33 uzs<br>
-                jami daromad: 480.000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+    <!-- 2 -->
+    <div class="product-item">
+        <img src="plane2.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 100.000 uzs<br>
+            Kunlik daromad: 17.000 uzs<br>
+            Soatlik daromad: 708.33 uzs<br>
+            jami daromad: 1 020 000 uzs
         </div>
-
-        <!-- 2-Mahsulot -->
-        <div class="product-item">
-            <img src="plane2.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 100.000 uzs<br>
-                Kunlik daromad: 17.000 uzs<br>
-                Soatlik daromad: 708.33 uzs<br>
-                jami daromad: 1 020 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
-
-        <!-- 3 -->
-        <div class="product-item">
-            <img src="plane3.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 200.000 uzs<br>
-                Kunlik daromad: 40.000 uzs<br>
-                Soatlik daromad: 1 666.66 uzs<br>
-                jami daromad: 2 400 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
-
-        <!-- 4 -->
-        <div class="product-item">
-            <img src="plane4.webp" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 300.000 uzs<br>
-                Kunlik daromad: 61.000 uzs<br>
-                Soatlik daromad: 2 541.6 uzs<br>
-                jami daromad: 3 660 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
-
-        <!-- 5 -->
-        <div class="product-item">
-            <img src="plane5.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 500.000 uzs<br>
-                Kunlik daromad: 105.000 uzs<br>
-                Soatlik daromad: 4 375 uzs<br>
-                jami daromad: 6 300 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
-
-        <!-- 6 -->
-        <div class="product-item">
-            <img src="plane6.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 800.000 uzs<br>
-                Kunlik daromad: 170.000 uzs<br>
-                Soatlik daromad: 7 083.3 uzs<br>
-                jami daromad: 10 200 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
-
-        <!-- 7 -->
-        <div class="product-item">
-            <img src="plane7.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 1 000.000 uzs<br>
-                Kunlik daromad: 250.000 uzs<br>
-                Soatlik daromad: 10 416.6 uzs<br>
-                jami daromad: 15 000 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
-
-        <!-- 8 -->
-        <div class="product-item">
-            <img src="plane8.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 1 500.000 uzs<br>
-                Kunlik daromad: 400.000 uzs<br>
-                Soatlik daromad: 16 666.6 uzs<br>
-                jami daromad: 24 000 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
-
-        <!-- 9 -->
-        <div class="product-item">
-            <img src="plane9.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 2 000.000 uzs<br>
-                Kunlik daromad: 500.000 uzs<br>
-                Soatlik daromad: 20 883 uzs<br>
-                jami daromad: 30 000 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
-
-        <!-- 10 -->
-        <div class="product-item">
-            <img src="plane10.jpg" alt="Mahsulot">
-            <div class="product-info">
-                depozit: 3 000.000 uzs<br>
-                Kunlik daromad: 800.000 uzs<br>
-                Soatlik daromad: 33 333 uzs<br>
-                jami daromad: 48 000 000 uzs
-            </div>
-            <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
-        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 2</div>
+        <div class="duration-badge">60 kun</div>
     </div>
 
-    <div class="bottom-nav">
-        <a href="home.html"><i class="fas fa-home"></i><span>Bosh menu</span></a>
-        <a href="task.html"><i class="fas fa-tasks"></i><span>Vazifa</span></a>
-        <a href="product.html"><i class="fas fa-box"></i><span>Mahsulot</span></a>
-        <a href="referal.html"><i class="fas fa-users"></i><span>Referal</span></a>
-        <a href="me.html"><i class="fas fa-user"></i><span>Men</span></a>
+    <!-- 3 -->
+    <div class="product-item">
+        <img src="plane3.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 200.000 uzs<br>
+            Kunlik daromad: 40.000 uzs<br>
+            Soatlik daromad: 1 666.66 uzs<br>
+            jami daromad: 2 400 000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 3</div>
+        <div class="duration-badge">60 kun</div>
     </div>
+
+    <!-- 4 -->
+    <div class="product-item">
+        <img src="plane4.webp" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 300.000 uzs<br>
+            Kunlik daromad: 61.000 uzs<br>
+            Soatlik daromad: 2 541.6 uzs<br>
+            jami daromad: 3 660 000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 4</div>
+        <div class="duration-badge">60 kun</div>
+    </div>
+
+    <!-- 5 -->
+    <div class="product-item">
+        <img src="plane5.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 500.000 uzs<br>
+            Kunlik daromad: 105.000 uzs<br>
+            Soatlik daromad: 4 375 uzs<br>
+            jami daromad: 6 300 000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 5</div>
+        <div class="duration-badge">60 kun</div>
+    </div>
+
+    <!-- 6 -->
+    <div class="product-item">
+        <img src="plane6.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 800.000 uzs<br>
+            Kunlik daromad: 170.000 uzs<br>
+            Soatlik daromad: 7 083.3 uzs<br>
+            jami daromad: 10 200 000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 6</div>
+        <div class="duration-badge">60 kun</div>
+    </div>
+
+    <!-- 7 -->
+    <div class="product-item">
+        <img src="plane7.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 1 000.000 uzs<br>
+            Kunlik daromad: 250.000 uzs<br>
+            Soatlik daromad: 10 416.6 uzs<br>
+            jami daromad: 15 000 000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 7</div>
+        <div class="duration-badge">60 kun</div>
+    </div>
+
+    <!-- 8 -->
+    <div class="product-item">
+        <img src="plane8.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 1 500.000 uzs<br>
+            Kunlik daromad: 400.000 uzs<br>
+            Soatlik daromad: 16 666.6 uzs<br>
+            jami daromad: 24 000 000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 8</div>
+        <div class="duration-badge">60 kun</div>
+    </div>
+
+    <!-- 9 -->
+    <div class="product-item">
+        <img src="plane9.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 2 000.000 uzs<br>
+            Kunlik daromad: 500.000 uzs<br>
+            Soatlik daromad: 20 883 uzs<br>
+            jami daromad: 30 000 000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 9</div>
+        <div class="duration-badge">60 kun</div>
+    </div>
+
+    <!-- 10 -->
+    <div class="product-item">
+        <img src="plane10.jpg" alt="Mahsulot">
+        <div class="product-info">
+            depozit: 3 000.000 uzs<br>
+            Kunlik daromad: 800.000 uzs<br>
+            Soatlik daromad: 33 333 uzs<br>
+            jami daromad: 48 000 000 uzs
+        </div>
+        <button class="buy-btn"><a href="depo.html">Sotib olish</a></button>
+        <div class="vip-badge">VIP 10</div>
+        <div class="duration-badge">60 kun</div>
+    </div>
+
+</div>
+
+<!-- Pastki navigatsiya -->
+<div class="bottom-nav">
+    <a href="home.html"><i class="fas fa-home"></i><span>Bosh menu</span></a>
+    <a href="task.html"><i class="fas fa-tasks"></i><span>Vazifa</span></a>
+    <a href="product.html"><i class="fas fa-box"></i><span>Mahsulot</span></a>
+    <a href="referal.html"><i class="fas fa-users"></i><span>Referal</span></a>
+    <a href="me.html"><i class="fas fa-user"></i><span>Men</span></a>
+</div>
 
 </body>
-                </html>
+</html>
