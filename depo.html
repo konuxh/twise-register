@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Depozit</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background-image: url(background2.jpg); color: #333; padding: 20px; }
+    h2 { text-align: center; margin-bottom: 20px; }
+    .container { max-width: 460px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    label { font-size: 14px; display: block; margin-bottom: 8px; }
+    select, input { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
+    .continue-btn { width: 100%; padding: 12px; background-color: #1a73e8; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+    .payment-page, .usdt-page { display: none; margin-top: 30px; }
+    .header { background: linear-gradient(to right, #1e90ff, #1abc9c); padding: 20px; text-align: center; color: white; }
+    .header h1 { font-size: 22px; margin-bottom: 5px; }
+    .amount { font-size: 28px; font-weight: bold; }
+    .timer { display: inline-block; margin-top: 10px; padding: 4px 10px; background-color: white; color: black; border-radius: 20px; font-size: 14px; font-weight: bold; }
+    .upload-box { margin-top: 20px; padding: 30px; border: 2px dashed #ccc; border-radius: 10px; text-align: center; color: #555; font-size: 16px; cursor: pointer; }
+    .confirm-btn { width: 100%; margin-top: 20px; padding: 12px; background-color: #1a73e8; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+    .confirm-btn:disabled { background-color: #aaa; cursor: not-allowed; }
+    .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 30px; border-radius: 10px; text-align: center; max-width: 300px; width: 90%; }
+    .modal-content h3 { margin-bottom: 15px; }
+    .manager-btn { margin-top: 20px; padding: 10px 20px; background-color: #1abc9c; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
+    .usdt-info { text-align: center; }
+    .usdt-info img { max-width: 200px; margin: 15px 0; }
+    .usdt-info .address-box { word-break: break-word; padding: 10px; background: #f0f0f0; border-radius: 8px; margin-bottom: 10px; }
+    .copy-btn { padding: 8px 12px; background: #1a73e8; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .input-group { display: flex; margin-bottom: 15px; }
+    .input-group input { flex: 1; margin-right: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>Depozit</h2>
+<div class="container">
+
+  <label>To'lov usulini tanlang:</label>
+  
+  <div style="display: flex; justify-content: space-between; gap: 10px; margin-bottom: 15px;">
+    <button style="flex: 1; padding: 10px; border: none; border-radius: 6px; cursor: pointer;" onclick="selectMethod('onepay')">
+      <img src="onepay.png" alt="OnePay" style="width: 100%; height: auto;">
+      <p>ONEPAY</p>
+    </button>
+    <button style="flex: 1; padding: 10px; border: none; border-radius: 6px; cursor: pointer;" onclick="selectMethod('menejer')">
+      <img src="manager.png" alt="Menejer" style="width: 80px; height: 80px;">
+      <p>MENEJER ORQALI</p>
+    </button>
+    <button style="flex: 1; padding: 10px; border: none; border-radius: 6px; cursor: pointer;" onclick="selectMethod('usdt')">
+      <img src="tether-678x381.png" alt="USDT" style="width: 100%; height: auto;">
+      <p>USDT (TRC20)</p>
+    </button>
+  </div>
+
+  <div id="amountSection" style="display:none">
+    <label>Miqdor kiriting (UZS):</label>
+    <input type="number" id="amountInput" placeholder="Masalan, 50000">
+  </div>
+
+  <button class="continue-btn" onclick="showPayment()">Davom etish</button>
+</div>
+
+<!-- To'lov sahifasi -->
+<div class="payment-page" id="paymentPage">
+  <div class="header">
+    <h1>ONEPAY</h1>
+    <div class="amount" id="amountDisplay">UZS 0</div>
+    <div class="timer" id="timer">51:52</div>
+  </div>
+
+  <div class="container">
+    <div class="step">1-qadam. Iltimos, quyidagi karta raqamiga pul o'tkazing</div>
+    <div class="step">2-qadam. To'lov chekini yuklang</div>
+
+    <div class="label">Qabul qiluvchi ism</div>
+    <div class="input-group">
+      <input type="text" id="name" readonly>
+      <button onclick="copyToClipboard('name')">Nusxalash</button>
+    </div>
+
+    <div class="label">Karta raqami</div>
+    <div class="input-group">
+      <input type="text" id="acc" readonly>
+      <button onclick="copyToClipboard('acc')">Nusxalash</button>
+    </div>
+
+    <div class="label">Bank nomi</div>
+    <div class="input-group">
+      <input type="text" id="bank" readonly>
+      <button onclick="copyToClipboard('bank')">Nusxalash</button>
+    </div>
+
+    <div class="upload-box" onclick="document.getElementById('voucher').click()">
+      📁 Chekni yuklash
+    </div>
+    <input type="file" id="voucher" style="display:none" onchange="enableConfirm()">
+
+    <button class="confirm-btn" id="submitBtn" disabled onclick="processPayment()">To'lovni tasdiqlash</button>
+  </div>
+</div>
+
+<!-- USDT sahifasi -->
+<div class="usdt-page" id="usdtPage">
+  <div class="container usdt-info">
+    <h3>USDT (TRC20) orqali to'lov</h3>
+    <div class="address-box" id="usdtAddress">TQYsmzeZeiBEdB7x6bcvqr7cmnah1TYjz3</div>
+    <button class="copy-btn" onclick="copyUsdt()">Manzilni nusxalash</button>
+    <img src="qr.jpg" alt="USDT QR Kod">
+  </div>
+</div>
+
+<!-- Modal oyna -->
+<div class="modal" id="loadingModal">
+  <div class="modal-content" id="modalContent">
+    <h3>Yuklanmoqda...</h3>
+    <p>Iltimos, kuting</p>
+  </div>
+</div>
+
+<script>
+  let selectedMethod = "";
+  const cardOptions = [
+    { name: "ALOQA", acc: "9860346606322375", bank: "Humo" },
+    { name: "HAMKOR", acc: "9860166603241315", bank: "Humo" }
+  ];
+
+  function selectMethod(method) {
+    selectedMethod = method;
+    document.getElementById('amountSection').style.display = (method === 'onepay') ? 'block' : 'none';
+    document.getElementById('usdtPage').style.display = (method === 'usdt') ? 'block' : 'none';
+  }
+
+  function showPayment() {
+    const amount = document.getElementById('amountInput').value;
+
+    if (selectedMethod === "onepay") {
+      if (!amount || amount <= 0) {
+        alert("Iltimos, miqdorni kiriting!");
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * cardOptions.length);
+      const selectedCard = cardOptions[randomIndex];
+
+      document.getElementById('name').value = selectedCard.name;
+      document.getElementById('acc').value = selectedCard.acc;
+      document.getElementById('bank').value = selectedCard.bank;
+
+      document.getElementById('amountDisplay').innerText = "UZS " + amount;
+      document.querySelector(".container").style.display = "none";
+      document.getElementById("paymentPage").style.display = "block";
+      startTimer();
+    } else if (selectedMethod === "menejer") {
+      window.location.href = "https://t.me/Twise_manager";
+    } else if (selectedMethod === "usdt") {
+      document.querySelector(".container").style.display = "none";
+      document.getElementById("usdtPage").style.display = "block";
+    } else {
+      alert("Iltimos, to'lov usulini tanlang!");
+    }
+  }
+
+  function copyToClipboard(id) {
+    const input = document.getElementById(id);
+    navigator.clipboard.writeText(input.value)
+      .then(() => alert("Nusxalandi: " + input.value));
+  }
+
+  function enableConfirm() {
+    document.getElementById('submitBtn').disabled = false;
+  }
+
+  function processPayment() {
+    const modal = document.getElementById('loadingModal');
+    const modalContent = document.getElementById('modalContent');
+
+    modal.style.display = 'flex';
+    modalContent.innerHTML = "<h3>Yuklanmoqda...</h3><p>Iltimos, 30 soniya kuting</p>";
+
+    setTimeout(() => {
+      modalContent.innerHTML = `
+        <h3>❌ To'lov muvaffaqiyatsiz!</h3>
+        <p>Iltimos, menejer bilan bog'laning</p>
+        <a href="https://t.me/Twise_manager" class="manager-btn" target="_blank">Menejerga yozish</a>
+      `;
+    }, 30000);
+  }
+
+  function copyUsdt() {
+    const address = document.getElementById('usdtAddress').innerText;
+    navigator.clipboard.writeText(address)
+      .then(() => alert("Manzil nusxalandi: " + address));
+  }
+
+  let minutes = 51;
+  let seconds = 52;
+  let timerInterval;
+
+  function startTimer() {
+    minutes = 51;
+    seconds = 52;
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(timerInterval);
+          return;
+        }
+        minutes--;
+        seconds = 59;
+      } else {
+        seconds--;
+      }
+
+      let m = minutes < 10 ? "0" + minutes : minutes;
+      let s = seconds < 10 ? "0" + seconds : seconds;
+      document.getElementById("timer").innerText = `${m}:${s}`;
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Ro'yxatdan o'tish va Kirish</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container" id="register-container">
+        <h2>Ro'yxatdan o'tish</h2>
+        
+        <label>Telefon raqami:</label>
+        <div class="phone-input">
+            <span>+998</span>
+            <input type="tel" id="phone" maxlength="9" placeholder="90 123 45 67">
+        </div>
+
+        <label>Parol:</label>
+        <div class="password-input">
+            <input type="password" id="password">
+            <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+        </div>
+
+        <label>Parolni tasdiqlash:</label>
+        <div class="password-input">
+            <input type="password" id="confirmPassword">
+            <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">👁️</span>
+        </div>
+
+        <button id="registerBtn" disabled>Ro'yxatdan o'tish</button>
+
+        <p>Allaqachon hisobingiz bormi? <a href="#" onclick="showLogin()">Kirish</a></p>
+    </div>
+
+    <div class="container" id="login-container" style="display:none;">
+        <h2>Kirish</h2>
+        
+        <label>Telefon raqami:</label>
+        <div class="phone-input">
+            <span>+998</span>
+            <input type="tel" id="loginPhone" maxlength="9" placeholder="90 123 45 67">
+        </div>
+
+        <label>Parol:</label>
+        <div class="password-input">
+            <input type="password" id="loginPassword">
+            <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+        </div>
+
+        <button id="loginBtn">Kirish</button>
+
+        <p>Hisobingiz yo'qmi? <a href="#" onclick="showRegister()">Ro'yxatdan o'tish</a></p>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>

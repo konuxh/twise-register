@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bonus Sahifasi</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #f4f4f4; padding: 20px; min-height: 100vh; position: relative; }
+    
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 15px;
+      background-color: #1a73e8;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 350px;
+      width: 100%;
+      margin: 100px auto 0 auto;
+      text-align: center;
+    }
+
+    h2 { margin-bottom: 15px; color: #333; }
+    p { margin-bottom: 20px; color: #555; font-size: 14px; }
+    .timer {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1a73e8;
+    }
+    .history-btn {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #1abc9c;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<a href="home.html" class="back-btn">⬅ Orqaga</a>
+
+<div class="container">
+  <h2>🎉 Bugungi kirish bonusini oldingiz!</h2>
+  <p>Tarix sahifasida tekshirishingiz mumkin.</p>
+  <div class="timer" id="timer">00:00:00</div>
+  <a href="history.html" class="history-btn">Tarix sahifasi</a>
+</div>
+
+<script>
+  function getToday9AM() {
+    const now = new Date();
+    const today9 = new Date();
+    today9.setHours(9, 0, 0, 0);
+    return today9;
+  }
+
+  function getNext9AM() {
+    const today9 = getToday9AM();
+    const now = new Date();
+
+    if (now >= today9) {
+      today9.setDate(today9.getDate() + 1);
+    }
+    return today9;
+  }
+
+  let next9amTime = localStorage.getItem('next9amTime');
+
+  if (!next9amTime || Date.now() > parseInt(next9amTime)) {
+    const next9 = getNext9AM();
+    next9amTime = next9.getTime();
+    localStorage.setItem('next9amTime', next9amTime);
+  }
+
+  function updateTimer() {
+    const now = Date.now();
+    const remaining = next9amTime - now;
+
+    if (remaining <= 0) {
+      const next9 = getNext9AM();
+      next9amTime = next9.getTime();
+      localStorage.setItem('next9amTime', next9amTime);
+    }
+
+    const diff = next9amTime - Date.now();
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('timer').textContent =
+      String(hours).padStart(2, '0') + ":" +
+      String(minutes).padStart(2, '0') + ":" +
+      String(seconds).padStart(2, '0');
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
