@@ -2,6 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -41,7 +42,7 @@
             margin: 15px;
             background: #fff;
             border-radius: 8px;
-            overflow: hidden;
+            overflow-x: auto;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
@@ -76,24 +77,18 @@
             z-index: 100;
         }
 
-        .bottom-nav div {
-            text-align: center;
-            font-size: 13px;
-            color: #555;
+        .bottom-nav a {
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
 
         .bottom-nav i {
-            font-size: 22px;
-            color: #555;
+            font-size: 20px;
             margin-bottom: 4px;
-        }
-
-        .bottom-nav span {
-            font-size: 12px;
         }
     </style>
 </head>
@@ -109,25 +104,25 @@
 
     <div class="table-container">
         <table>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
+            <tr><td>Foydalanuvchi 1</td></tr>
+            <tr><td>Foydalanuvchi 2</td></tr>
+            <tr><td>Foydalanuvchi 3</td></tr>
+            <tr><td>Foydalanuvchi 4</td></tr>
+            <tr><td>Foydalanuvchi 5</td></tr>
+            <tr><td>Foydalanuvchi 6</td></tr>
+            <tr><td>Foydalanuvchi 7</td></tr>
+            <tr><td>Foydalanuvchi 8</td></tr>
+            <tr><td>Foydalanuvchi 9</td></tr>
+            <tr><td>Foydalanuvchi 10</td></tr>
         </table>
     </div>
 
     <div class="bottom-nav">
-        <div><i class="fas fa-home"></i><a style="text-decoration: none; color: black;" href="home.html">Bosh menu</a></div>
-        <div><i class="fas fa-tasks"></i> <a style="text-decoration: none; color: black;" href="task.html">Vazifa</a></div>
-        <div><i class="fas fa-box"></i><a style="text-decoration: none; color: black;" href="product.html">Mahsulot</a></div>
-        <div><i class="fas fa-users"></i><a style="text-decoration: none; color: black;" href="referal.html">Referal</a></div>
-        <div><i class="fas fa-user"></i><a style="text-decoration: none; color: black;" href="me.html">Men</a></div>
+        <a href="home.html"><i class="fas fa-home"></i><span>Bosh menu</span></a>
+        <a href="task.html"><i class="fas fa-tasks"></i><span>Vazifa</span></a>
+        <a href="product.html"><i class="fas fa-box"></i><span>Mahsulot</span></a>
+        <a href="referal.html"><i class="fas fa-users"></i><span>Referal</span></a>
+        <a href="me.html"><i class="fas fa-user"></i><span>Men</span></a>
     </div>
 
 </body>
