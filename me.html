@@ -2,6 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Men</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -9,6 +10,8 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-image: url(background2.jpg);
+            background-size: cover;
+            background-position: center;
             padding-bottom: 70px;
             text-align: center;
         }
@@ -72,13 +75,25 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            transition: background 0.2s;
+        }
+
+        .menu-btn:hover {
+            background: #f0f0f0;
         }
 
         .menu-btn i {
             font-size: 20px;
             margin-right: 10px;
             color: #555;
+        }
+
+        .menu-btn a {
+            text-decoration: none;
+            color: black;
+            flex-grow: 1;
+            text-align: left;
         }
 
         .bottom-nav {
@@ -96,24 +111,19 @@
             z-index: 100;
         }
 
-        .bottom-nav div {
+        .bottom-nav a {
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             color: #555;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            text-decoration: none;
         }
 
         .bottom-nav i {
-            font-size: 22px;
-            color: #555;
-            margin-bottom: 4px;
-        }
-
-        .bottom-nav span {
-            font-size: 12px;
+            font-size: 20px;
+            margin-bottom: 3px;
         }
     </style>
 </head>
@@ -122,37 +132,34 @@
     <div class="header">Men</div>
 
     <div class="profile-section">
-        <div class="profile-img">
-        </div>
+        <div class="profile-img"></div>
         <div class="phone-text" id="userPhone">Telefon raqam: Noma'lum</div>
         <div>Balans: 11.000 uzs</div>
         <div class="vip-status">VIP0</div>
     </div>
 
     <div class="menu-column">
-        <div class="menu-btn"><i class="fas fa-wallet"></i> <a style="text-decoration: none; color: black;" href="depo.html">Depozit</a></div>
-        <div class="menu-btn"><i class="fas fa-money-bill-wave"></i> <a style="text-decoration: none; color: black;" href="withdraw.html">Pul yechish</a></div>
-        <div class="menu-btn"><i class="fab fa-telegram"></i> <a style="text-decoration: none; color: black;" href="https://t.me/twise_chat">Telegram</a></div>
-        <div class="menu-btn"><i class="fas fa-headset"></i> <a style="text-decoration: none; color: black;" href="https://t.me/Twise_manager">Yordam</a></div>
-        <div class="menu-btn"><i class="fas fa-mobile-alt"></i> Ilova</div>
-        <div class="menu-btn"><i class="fas fa-history"></i><a style="text-decoration: none; color: black;" href="history.html">Tarix</a></div>
-        <div class="menu-btn"><i class="fas fa-sign-out-alt"></i> <a style="text-decoration: none; color: black;" href="index.html">Chiqish</a></div>
+        <div class="menu-btn"><i class="fas fa-wallet"></i><a href="depo.html">Depozit</a></div>
+        <div class="menu-btn"><i class="fas fa-money-bill-wave"></i><a href="withdraw.html">Pul yechish</a></div>
+        <div class="menu-btn"><i class="fab fa-telegram"></i><a href="https://t.me/twise_chat">Telegram</a></div>
+        <div class="menu-btn"><i class="fas fa-headset"></i><a href="https://t.me/Twise_manager">Yordam</a></div>
+        <div class="menu-btn"><i class="fas fa-mobile-alt"></i><span>Ilova</span></div>
+        <div class="menu-btn"><i class="fas fa-history"></i><a href="history.html">Tarix</a></div>
+        <div class="menu-btn"><i class="fas fa-sign-out-alt"></i><a href="index.html">Chiqish</a></div>
     </div>
 
     <div class="bottom-nav">
-        <div><i class="fas fa-home"></i><a style="text-decoration: none; color: black;" href="home.html">Bosh menu</a></div>
-        <div><i class="fas fa-tasks"></i> <a style="text-decoration: none; color: black;" href="task.html">Vazifa</a></div>
-        <div><i class="fas fa-box"></i><a style="text-decoration: none; color: black;" href="product.html">Mahsulot</a></div>
-        <div><i class="fas fa-users"></i><a style="text-decoration: none; color: black;" href="referal.html">Referal</a></div>
-        <div><i class="fas fa-user"></i><a style="text-decoration: none; color: black;" href="me.html">Men</a></div>
+        <a href="home.html"><i class="fas fa-home"></i><span>Bosh menu</span></a>
+        <a href="task.html"><i class="fas fa-tasks"></i><span>Vazifa</span></a>
+        <a href="product.html"><i class="fas fa-box"></i><span>Mahsulot</span></a>
+        <a href="referal.html"><i class="fas fa-users"></i><span>Referal</span></a>
+        <a href="me.html"><i class="fas fa-user"></i><span>Men</span></a>
     </div>
 
-
     <script>
-        // LocalStorage dan raqam olish
         let phone = localStorage.getItem('userPhone');
-        if(phone){
-            document.getElementById('userPhone').innerText = phone;
+        if (phone) {
+            document.getElementById('userPhone').innerText = `Telefon raqam: ${phone}`;
         }
     </script>
 
