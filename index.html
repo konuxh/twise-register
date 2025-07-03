@@ -149,44 +149,7 @@
         <p>Hisobingiz yo'qmi? <a href="#" onclick="showRegister()">Ro'yxatdan o'tish</a></p>
     </div>
 
-    <script>
-        function togglePassword(id, el) {
-            const input = document.getElementById(id);
-            if (input.type === "password") {
-                input.type = "text";
-                el.textContent = "🙈";
-            } else {
-                input.type = "password";
-                el.textContent = "👁️";
-            }
-        }
 
-        function showLogin() {
-            document.getElementById("register-container").style.display = "none";
-            document.getElementById("login-container").style.display = "block";
-        }
-
-        function showRegister() {
-            document.getElementById("login-container").style.display = "none";
-            document.getElementById("register-container").style.display = "block";
-        }
-
-        // Faol bo'lishi uchun parollar tekshiruvi
-        const password = document.getElementById("password");
-        const confirmPassword = document.getElementById("confirmPassword");
-        const registerBtn = document.getElementById("registerBtn");
-
-        function validatePasswords() {
-            if (password.value.length >= 4 && password.value === confirmPassword.value) {
-                registerBtn.disabled = false;
-            } else {
-                registerBtn.disabled = true;
-            }
-        }
-
-        password.addEventListener("input", validatePasswords);
-        confirmPassword.addEventListener("input", validatePasswords);
-    </script>
     <script src="script.js"></script>
 </body>
                                   </html>
