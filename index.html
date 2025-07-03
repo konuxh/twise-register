@@ -1,155 +1,239 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ro'yxatdan o'tish va Kirish</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f3f3f3;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ro'yxatdan o'tish va Kirish</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 400px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
 
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
+    h2 {
+      margin-top: 0;
+      text-align: center;
+    }
 
-        .phone-input, .password-input {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #fafafa;
-        }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
 
-        .phone-input span,
-        .password-input span {
-            padding: 10px;
-            background: #ddd;
-            font-weight: bold;
-            white-space: nowrap;
-        }
+    .phone-input {
+      display: flex;
+      align-items: center;
+    }
 
-        .phone-input input,
-        .password-input input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            outline: none;
-            background: transparent;
-            font-size: 16px;
-        }
+    .phone-input span {
+      background: #eee;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-right: none;
+      border-radius: 5px 0 0 5px;
+      font-size: 16px;
+    }
 
-        button {
-            margin-top: 20px;
-            width: 100%;
-            padding: 12px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    .phone-input input {
+      border-radius: 0 5px 5px 0;
+      border-left: none;
+    }
 
-        button:disabled {
-            background: #aaa;
-            cursor: not-allowed;
-        }
+    .password-input {
+      position: relative;
+    }
 
-        p {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-        }
+    .password-input input {
+      padding-right: 35px;
+    }
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
 
-        @media (max-width: 480px) {
-            .container {
-                margin: 20px;
-                padding: 15px;
-            }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #2e89ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-            input, button {
-                font-size: 16px;
-            }
-        }
-    </style>
+    button:disabled {
+      background: #aaa;
+    }
+
+    a {
+      color: #2e89ff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    small {
+      color: red;
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container" id="register-container">
-        <h2>Ro'yxatdan o'tish</h2>
-        
-        <label>Telefon raqami:</label>
-        <div class="phone-input">
-            <span>+998</span>
-            <input type="tel" id="phone" maxlength="9" placeholder="90 123 45 67">
-        </div>
+<div class="container" id="register-container">
+  <h2>Ro'yxatdan o'tish</h2>
 
-        <label>Parol:</label>
-        <div class="password-input">
-            <input type="password" id="password">
-            <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
-        </div>
+  <label>Telefon raqami:</label>
+  <div class="phone-input">
+    <span>+998</span>
+    <input type="tel" id="phone" maxlength="9" pattern="[0-9]{9}" placeholder="901234567" required>
+  </div>
+  <small id="phoneError">To‘g‘ri telefon raqamini kiriting (masalan: 901234567)</small>
 
-        <label>Parolni tasdiqlash:</label>
-        <div class="password-input">
-            <input type="password" id="confirmPassword">
-            <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">👁️</span>
-        </div>
+  <label>Parol:</label>
+  <div class="password-input">
+    <input type="password" id="password">
+    <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+  </div>
 
-        <button id="registerBtn" disabled>Ro'yxatdan o'tish</button>
+  <label>Parolni tasdiqlash:</label>
+  <div class="password-input">
+    <input type="password" id="confirmPassword">
+    <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">👁️</span>
+  </div>
 
-        <p>Allaqachon hisobingiz bormi? <a href="#" onclick="showLogin()">Kirish</a></p>
-    </div>
+  <button id="registerBtn" disabled>Ro'yxatdan o'tish</button>
 
-    <div class="container" id="login-container" style="display:none;">
-        <h2>Kirish</h2>
-        
-        <label>Telefon raqami:</label>
-        <div class="phone-input">
-            <span>+998</span>
-            <input type="tel" id="loginPhone" maxlength="9" placeholder="90 123 45 67">
-        </div>
+  <p>Allaqachon hisobingiz bormi? <a onclick="showLogin()">Kirish</a></p>
+</div>
 
-        <label>Parol:</label>
-        <div class="password-input">
-            <input type="password" id="loginPassword">
-            <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
-        </div>
+<div class="container" id="login-container" style="display:none;">
+  <h2>Kirish</h2>
 
-        <button id="loginBtn">Kirish</button>
+  <label>Telefon raqami:</label>
+  <div class="phone-input">
+    <span>+998</span>
+    <input type="tel" id="loginPhone" maxlength="9" placeholder="901234567" required>
+  </div>
 
-        <p>Hisobingiz yo'qmi? <a href="#" onclick="showRegister()">Ro'yxatdan o'tish</a></p>
-    </div>
+  <label>Parol:</label>
+  <div class="password-input">
+    <input type="password" id="loginPassword">
+    <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+  </div>
 
+  <button id="loginBtn">Kirish</button>
 
-    <script src="script.js"></script>
+  <p>Hisobingiz yo'qmi? <a onclick="showRegister()">Ro'yxatdan o'tish</a></p>
+</div>
+
+<script>
+  const phoneInput = document.getElementById('phone');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const registerBtn = document.getElementById('registerBtn');
+  const phoneError = document.getElementById('phoneError');
+
+  const loginPhoneInput = document.getElementById('loginPhone');
+  const loginPasswordInput = document.getElementById('loginPassword');
+  const loginBtn = document.getElementById('loginBtn');
+
+  function validatePhone(phone) {
+    return /^[0-9]{9}$/.test(phone);
+  }
+
+  function checkForm() {
+    const isPhoneValid = validatePhone(phoneInput.value);
+    const passwordsMatch = passwordInput.value && confirmPasswordInput.value && passwordInput.value === confirmPasswordInput.value;
+
+    phoneError.style.display = isPhoneValid ? "none" : "block";
+
+    registerBtn.disabled = !(isPhoneValid && passwordsMatch);
+  }
+
+  phoneInput.addEventListener('input', checkForm);
+  passwordInput.addEventListener('input', checkForm);
+  confirmPasswordInput.addEventListener('input', checkForm);
+
+  function togglePassword(id, element) {
+    const input = document.getElementById(id);
+    if (input.type === "password") {
+      input.type = "text";
+      element.textContent = "🙈";
+    } else {
+      input.type = "password";
+      element.textContent = "👁️";
+    }
+  }
+
+  registerBtn.addEventListener('click', () => {
+    const phone = "+998" + phoneInput.value;
+    const password = passwordInput.value;
+
+    localStorage.setItem('userPhone', phone);
+    localStorage.setItem('userPassword', password);
+
+    alert("Ro'yxatdan o'tdingiz. Endi tizimga kiring.");
+    showLogin();
+  });
+
+  loginBtn.addEventListener('click', () => {
+    const savedPhone = localStorage.getItem('userPhone');
+    const savedPassword = localStorage.getItem('userPassword');
+
+    const enteredPhone = "+998" + loginPhoneInput.value;
+    const enteredPassword = loginPasswordInput.value;
+
+    if (enteredPhone === savedPhone && enteredPassword === savedPassword) {
+      alert("Muvaffaqiyatli tizimga kirdingiz!");
+      window.location.href = "home.html"; // Bosh sahifaga o'tish (home.html faylini yarating)
+    } else {
+      alert("Telefon raqami yoki parol noto'g'ri!");
+    }
+  });
+
+  function showLogin() {
+    document.getElementById('register-container').style.display = "none";
+    document.getElementById('login-container').style.display = "block";
+  }
+
+  function showRegister() {
+    document.getElementById('register-container').style.display = "block";
+    document.getElementById('login-container').style.display = "none";
+  }
+</script>
+
 </body>
-                                  </html>
+</html>
