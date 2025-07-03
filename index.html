@@ -35,40 +35,50 @@
       text-align: center;
     }
 
-    input {
+    .phone-input {
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .phone-input input:first-child {
+      width: 70px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-right: none;
+      border-radius: 5px 0 0 5px;
+      font-size: 16px;
+      height: 42px;
+      background: #eee;
+    }
+
+    .phone-input input:last-child {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-left: none;
+      border-radius: 0 5px 5px 0;
+      font-size: 16px;
+      padding: 0 10px;
+      height: 42px;
+    }
+
+    input, button {
       width: 100%;
       padding: 10px;
       margin: 8px 0 15px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 16px;
-    }
-
-    .phone-input {
-      display: flex;
-      align-items: center;
-    }
-
-    .phone-input span {
-      background: #eee;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-right: none;
-      border-radius: 5px 0 0 5px;
-      font-size: 16px;
-    }
-
-    .phone-input input {
-      border-radius: 0 5px 5px 0;
-      border-left: none;
+      height: 42px;
     }
 
     .password-input {
       position: relative;
+      margin-bottom: 15px;
     }
 
     .password-input input {
       padding-right: 35px;
+      height: 42px;
     }
 
     .toggle-password {
@@ -80,13 +90,9 @@
     }
 
     button {
-      width: 100%;
-      padding: 12px;
       background: #2e89ff;
       color: white;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
       cursor: pointer;
     }
 
@@ -117,8 +123,8 @@
 
   <label>Telefon raqami:</label>
   <div class="phone-input">
-    <span>+998</span>
-    <input type="tel" id="phone" maxlength="9" pattern="[0-9]{9}" placeholder="901234567" required>
+    <input type="text" value="+998" readonly>
+    <input type="tel" id="phone" maxlength="9" placeholder="901234567" required>
   </div>
   <small id="phoneError">To‘g‘ri telefon raqamini kiriting (masalan: 901234567)</small>
 
@@ -144,7 +150,7 @@
 
   <label>Telefon raqami:</label>
   <div class="phone-input">
-    <span>+998</span>
+    <input type="text" value="+998" readonly>
     <input type="tel" id="loginPhone" maxlength="9" placeholder="901234567" required>
   </div>
 
@@ -179,7 +185,6 @@
     const passwordsMatch = passwordInput.value && confirmPasswordInput.value && passwordInput.value === confirmPasswordInput.value;
 
     phoneError.style.display = isPhoneValid ? "none" : "block";
-
     registerBtn.disabled = !(isPhoneValid && passwordsMatch);
   }
 
@@ -218,7 +223,7 @@
 
     if (enteredPhone === savedPhone && enteredPassword === savedPassword) {
       alert("Muvaffaqiyatli tizimga kirdingiz!");
-      window.location.href = "home.html"; // Bosh sahifaga o'tish (home.html faylini yarating)
+      window.location.href = "home.html";
     } else {
       alert("Telefon raqami yoki parol noto'g'ri!");
     }
