@@ -1,167 +1,191 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Men</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-image: url(background2.jpg);
-            background-size: cover;
-            background-position: center;
-            padding-bottom: 70px;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Men</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Arial", sans-serif;
+      background: url("background2.jpg") no-repeat center center fixed;
+      background-size: cover;
+      padding-bottom: 80px;
+    }
 
-        .header {
-            background: #fff;
-            padding: 15px;
-            font-size: 20px;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    .header {
+      background: #fff;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .profile-section {
-            background: #fff;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .profile-section {
+      background: rgba(255, 255, 255, 0.95);
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      color: #000;
+    }
 
-        .profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: #ddd url('ava.jpg') center/cover no-repeat;
-            margin-bottom: 10px;
-        }
+    .profile-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: url('ava.jpg') center/cover no-repeat;
+      margin-bottom: 12px;
+      border: 2px solid #000;
+    }
 
-        .phone-text {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
+    .phone-text {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
 
-        .vip-status {
-            margin-top: 5px;
-            font-size: 14px;
-            color: #888;
-        }
+    .balance {
+      font-size: 16px;
+      color: green;
+      margin-bottom: 5px;
+    }
 
-        .menu-column {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 20px;
-        }
+    .vip-status {
+      font-size: 14px;
+      color: #555;
+      margin-top: 5px;
+    }
 
-        .menu-btn {
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            font-size: 16px;
-            color: #333;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            transition: background 0.2s;
-        }
+    .menu-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 20px;
+    }
 
-        .menu-btn:hover {
-            background: #f0f0f0;
-        }
+    .menu-btn {
+      background: #fff;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
 
-        .menu-btn i {
-            font-size: 20px;
-            margin-right: 10px;
-            color: #555;
-        }
+    .menu-btn:hover {
+      background: #f5f5f5;
+    }
 
-        .menu-btn a {
-            text-decoration: none;
-            color: black;
-            flex-grow: 1;
-            text-align: left;
-        }
+    .menu-btn i {
+      font-size: 20px;
+      margin-right: 10px;
+      color: #2e89ff;
+      width: 24px;
+    }
 
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 8px 0;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            border-top: 1px solid #ddd;
-            z-index: 100;
-        }
+    .menu-btn a {
+      text-decoration: none;
+      color: inherit;
+      flex-grow: 1;
+    }
 
-        .bottom-nav a {
-            text-align: center;
-            font-size: 12px;
-            color: #555;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-        }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid #ddd;
+      z-index: 100;
+    }
 
-        .bottom-nav i {
-            font-size: 20px;
-            margin-bottom: 3px;
-        }
-    </style>
+    .bottom-nav a {
+      text-decoration: none;
+      color: #555;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-nav a:hover {
+      color: #000;
+    }
+
+    .bottom-nav i {
+      font-size: 20px;
+      margin-bottom: 3px;
+    }
+
+    @media (max-width: 400px) {
+      .profile-section {
+        margin: 12px;
+        padding: 16px;
+      }
+
+      .menu-column {
+        margin: 12px;
+      }
+
+      .menu-btn {
+        padding: 12px;
+        font-size: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="header">Men</div>
+  <div class="header">Men</div>
 
-    <div class="profile-section">
-        <div class="profile-img"></div>
-        <div class="phone-text" id="userPhone">Telefon raqam: Noma'lum</div>
-        <div>Balans: 11.000 uzs</div>
-        <div class="vip-status">VIP0</div>
-    </div>
+  <div class="profile-section">
+    <div class="profile-img"></div>
+    <div class="phone-text" id="userPhone">Telefon raqam: Noma'lum</div>
+    <div class="balance">Balans: 11.000 uzs</div>
+    <div class="vip-status">VIP0</div>
+  </div>
 
-    <div class="menu-column">
-        <div class="menu-btn"><i class="fas fa-wallet"></i><a href="depo.html">Depozit</a></div>
-        <div class="menu-btn"><i class="fas fa-money-bill-wave"></i><a href="withdraw.html">Pul yechish</a></div>
-        <div class="menu-btn"><i class="fab fa-telegram"></i><a href="https://t.me/twise_chat">Telegram</a></div>
-        <div class="menu-btn"><i class="fas fa-headset"></i><a href="https://t.me/Twise_manager">Yordam</a></div>
-        <div class="menu-btn"><i class="fas fa-mobile-alt"></i><span>Ilova</span></div>
-        <div class="menu-btn"><i class="fas fa-history"></i><a href="history.html">Tarix</a></div>
-        <div class="menu-btn"><i class="fas fa-sign-out-alt"></i><a href="index.html">Chiqish</a></div>
-    </div>
+  <div class="menu-column">
+    <div class="menu-btn"><i class="fas fa-wallet"></i><a href="depo.html">Depozit</a></div>
+    <div class="menu-btn"><i class="fas fa-money-bill-wave"></i><a href="withdraw.html">Pul yechish</a></div>
+    <div class="menu-btn"><i class="fab fa-telegram"></i><a href="https://t.me/twise_chat">Telegram</a></div>
+    <div class="menu-btn"><i class="fas fa-headset"></i><a href="https://t.me/Twise_manager">Yordam</a></div>
+    <div class="menu-btn"><i class="fas fa-mobile-alt"></i><span>Ilova</span></div>
+    <div class="menu-btn"><i class="fas fa-history"></i><a href="history.html">Tarix</a></div>
+    <div class="menu-btn"><i class="fas fa-sign-out-alt"></i><a href="index.html">Chiqish</a></div>
+  </div>
 
-    <div class="bottom-nav">
-        <a href="home.html"><i class="fas fa-home"></i><span>Bosh menu</span></a>
-        <a href="task.html"><i class="fas fa-tasks"></i><span>Vazifa</span></a>
-        <a href="product.html"><i class="fas fa-box"></i><span>Mahsulot</span></a>
-        <a href="referal.html"><i class="fas fa-users"></i><span>Referal</span></a>
-        <a href="me.html"><i class="fas fa-user"></i><span>Men</span></a>
-    </div>
+  <div class="bottom-nav">
+    <a href="home.html"><i class="fas fa-home"></i><span>Bosh menu</span></a>
+    <a href="task.html"><i class="fas fa-tasks"></i><span>Vazifa</span></a>
+    <a href="product.html"><i class="fas fa-box"></i><span>Mahsulot</span></a>
+    <a href="referal.html"><i class="fas fa-users"></i><span>Referal</span></a>
+    <a href="me.html"><i class="fas fa-user"></i><span>Men</span></a>
+  </div>
 
-    <script>
-        let phone = localStorage.getItem('userPhone');
-        if (phone) {
-            document.getElementById('userPhone').innerText = `Telefon raqam: ${phone}`;
-        }
-    </script>
+  <script>
+    const phone = localStorage.getItem("userPhone");
+    if (phone) {
+      document.getElementById("userPhone").innerText = `Telefon raqam: ${phone}`;
+    }
+  </script>
 
 </body>
 </html>
