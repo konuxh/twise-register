@@ -38,7 +38,6 @@
 <div class="container">
 
   <label>To'lov usulini tanlang:</label>
-  
   <div style="display: flex; justify-content: space-between; gap: 10px; margin-bottom: 15px;">
     <button style="flex: 1; padding: 10px; border: none; border-radius: 6px; cursor: pointer;" onclick="selectMethod('onepay')">
       <img src="onepay.png" alt="OnePay" style="width: 100%; height: auto;">
@@ -120,26 +119,39 @@
 </div>
 
 <script>
-  let selectedMethod = "";
-  const cardOptions = [
-    { name: "ALOQA", acc: "9860346606322375", bank: "Humo" },
-    { name: "HAMKOR", acc: "9860166603241315", bank: "Humo" }
-  ];
+let selectedMethod = "";
+const cardOptions = [
+  { name: "ALOQA", acc: "9860346606322375", bank: "Humo" },
+  { name: "HAMKOR", acc: "9860166603241315", bank: "Humo" }
+];
 
-  function selectMethod(method) {
-    selectedMethod = method;
-    document.getElementById('amountSection').style.display = (method === 'onepay') ? 'block' : 'none';
-    document.getElementById('usdtPage').style.display = (method === 'usdt') ? 'block' : 'none';
-  }
+function selectMethod(method) {
+  selectedMethod = method;
+  document.getElementById('amountSection').style.display = (method === 'onepay') ? 'block' : 'none';
+  document.getElementById('usdtPage').style.display = (method === 'usdt') ? 'block' : 'none';
+}
 
-  function showPayment() {
-    const amount = document.getElementById('amountInput').value;
+function showPayment() {
+  const amount = parseInt(document.getElementById('amountInput').value);
 
-    if (selectedMethod === "onepay") {
-      if (!amount || amount <= 0) {
-        alert("Iltimos, miqdorni kiriting!");
-        return;
-      }
+  if (selectedMethod === "onepay") {
+    if (!amount || amount <= 0) {
+      alert("Iltimos, miqdorni kiriting!");
+      return;
+    }
+    if (amount < 50000) {
+      alert("Minimal depozit 50,000 UZS");
+      return;
+    }
+
+    const modal = document.getElementById('loadingModal');
+    const modalContent = document.getElementById('modalContent');
+
+    modal.style.display = 'flex';
+    modalContent.innerHTML = "<h3>Karta rekvizitlari qidirilmoqda...</h3><p>Iltimos, 10 soniya kuting</p>";
+
+    setTimeout(() => {
+      modal.style.display = 'none';
 
       const randomIndex = Math.floor(Math.random() * cardOptions.length);
       const selectedCard = cardOptions[randomIndex];
@@ -152,74 +164,76 @@
       document.querySelector(".container").style.display = "none";
       document.getElementById("paymentPage").style.display = "block";
       startTimer();
-    } else if (selectedMethod === "menejer") {
-      window.location.href = "https://t.me/Twise_manager";
-    } else if (selectedMethod === "usdt") {
-      document.querySelector(".container").style.display = "none";
-      document.getElementById("usdtPage").style.display = "block";
-    } else {
-      alert("Iltimos, to'lov usulini tanlang!");
-    }
+    }, 10000);
+
+  } else if (selectedMethod === "menejer") {
+    window.location.href = "https://t.me/Twise_manager";
+  } else if (selectedMethod === "usdt") {
+    document.querySelector(".container").style.display = "none";
+    document.getElementById("usdtPage").style.display = "block";
+  } else {
+    alert("Iltimos, to'lov usulini tanlang!");
   }
+}
 
-  function copyToClipboard(id) {
-    const input = document.getElementById(id);
-    navigator.clipboard.writeText(input.value)
-      .then(() => alert("Nusxalandi: " + input.value));
-  }
+function copyToClipboard(id) {
+  const input = document.getElementById(id);
+  navigator.clipboard.writeText(input.value)
+    .then(() => alert("Nusxalandi: " + input.value));
+}
 
-  function enableConfirm() {
-    document.getElementById('submitBtn').disabled = false;
-  }
+function enableConfirm() {
+  document.getElementById('submitBtn').disabled = false;
+}
 
-  function processPayment() {
-    const modal = document.getElementById('loadingModal');
-    const modalContent = document.getElementById('modalContent');
+function processPayment() {
+  const modal = document.getElementById('loadingModal');
+  const modalContent = document.getElementById('modalContent');
 
-    modal.style.display = 'flex';
-    modalContent.innerHTML = "<h3>Yuklanmoqda...</h3><p>Iltimos, 30 soniya kuting</p>";
+  modal.style.display = 'flex';
+  modalContent.innerHTML = "<h3>Yuklanmoqda...</h3><p>Iltimos, 30 soniya kuting</p>";
 
-    setTimeout(() => {
-      modalContent.innerHTML = `
-        <h3>❌ To'lov muvaffaqiyatsiz!</h3>
-        <p>Iltimos, menejer bilan bog'laning</p>
-        <a href="https://t.me/Twise_manager" class="manager-btn" target="_blank">Menejerga yozish</a>
-      `;
-    }, 30000);
-  }
+  setTimeout(() => {
+    modalContent.innerHTML = `
+      <h3>❌ To'lov muvaffaqiyatsiz!</h3>
+      <p>Iltimos, menejer bilan bog'laning</p>
+      <a href="https://t.me/Twise_manager" class="manager-btn" target="_blank">Menejerga yozish</a>
+    `;
+  }, 30000);
+}
 
-  function copyUsdt() {
-    const address = document.getElementById('usdtAddress').innerText;
-    navigator.clipboard.writeText(address)
-      .then(() => alert("Manzil nusxalandi: " + address));
-  }
+function copyUsdt() {
+  const address = document.getElementById('usdtAddress').innerText;
+  navigator.clipboard.writeText(address)
+    .then(() => alert("Manzil nusxalandi: " + address));
+}
 
-  let minutes = 51;
-  let seconds = 52;
-  let timerInterval;
+let minutes = 51;
+let seconds = 52;
+let timerInterval;
 
-  function startTimer() {
-    minutes = 51;
-    seconds = 52;
-    clearInterval(timerInterval);
+function startTimer() {
+  minutes = 51;
+  seconds = 52;
+  clearInterval(timerInterval);
 
-    timerInterval = setInterval(() => {
-      if (seconds === 0) {
-        if (minutes === 0) {
-          clearInterval(timerInterval);
-          return;
-        }
-        minutes--;
-        seconds = 59;
-      } else {
-        seconds--;
+  timerInterval = setInterval(() => {
+    if (seconds === 0) {
+      if (minutes === 0) {
+        clearInterval(timerInterval);
+        return;
       }
+      minutes--;
+      seconds = 59;
+    } else {
+      seconds--;
+    }
 
-      let m = minutes < 10 ? "0" + minutes : minutes;
-      let s = seconds < 10 ? "0" + seconds : seconds;
-      document.getElementById("timer").innerText = `${m}:${s}`;
-    }, 1000);
-  }
+    let m = minutes < 10 ? "0" + minutes : minutes;
+    let s = seconds < 10 ? "0" + seconds : seconds;
+    document.getElementById("timer").innerText = `${m}:${s}`;
+  }, 1000);
+}
 </script>
 
 </body>
